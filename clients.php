@@ -9,13 +9,13 @@ if (!isset($_SESSION['user_id']) || !$_SESSION['is_admin']) {
 
 // Manejo de alta, baja, modificación y consulta de clientes
 if (isset($_POST['add_client'])) {
-    $phone = sanitize($_POST['phone']);
-    $name = sanitize($_POST['name']);
-    $last_name = sanitize($_POST['last_name']);
-    $address = sanitize($_POST['address']);
-    $email = sanitize($_POST['email']);
-    $state = sanitize($_POST['state']);
-    $city = sanitize($_POST['city']);
+    $phone = ($_POST['phone']);
+    $name = ($_POST['name']);
+    $last_name = ($_POST['last_name']);
+    $address = ($_POST['address']);
+    $email = ($_POST['email']);
+    $state = ($_POST['state']);
+    $city = ($_POST['city']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $stmt = $conn->prepare("INSERT INTO users (phone, password, name, last_name, address, email, state, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
