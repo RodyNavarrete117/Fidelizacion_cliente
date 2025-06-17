@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config.php'; // Archivo de conexión a la base de datos
+require_once 'config.php'; // Archivo que contiene la conexión y define $conn
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
@@ -10,20 +10,30 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $is_admin = $_SESSION['is_admin'];
 
+// Preparar y ejecutar la consulta
 $stmt = $conn->prepare("SELECT name, last_name, points FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
-$user = $stmt->get_result()->fetch_assoc();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 1) {
+    $user = $result->fetch_assoc();
+} else {
+    // Usuario no encontrado o error
+    echo "Usuario no encontrado.";
+    exit();
+}
+
 $stmt->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dashboard - Programa de Fidelización</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">

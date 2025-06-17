@@ -38,3 +38,12 @@ CREATE TABLE point_transactions (
     transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+USE loyalty_program;
+
+-- Insertar usuarios de ejemplo (clientes y un administrador)
+INSERT INTO users (phone, password, name, last_name, address, email, state, city, points, is_admin) VALUES
+('5512345678', '123456', 'Juan', 'Pérez García', 'Calle Falsa 123, Col. Centro', 'juan.perez@example.com', 'Ciudad de México', 'CDMX', 150, 0),
+('5523456789', '123456', 'María', 'López Hernández', 'Av. Siempre Viva 456', 'maria.lopez@example.com', 'Jalisco', 'Guadalajara', 200, 0),
+('5534567890', '123456', 'Carlos', 'Gómez Ramírez', 'Calle Luna 789, Col. Estrella', 'carlos.gomez@example.com', 'Nuevo León', 'Monterrey', 50, 0),
+('5545678901', '123456', 'Ana', 'Martínez Torres', 'Blvd. Independencia 101', 'ana.martinez@example.com', 'Querétaro', 'Querétaro', 300, 0),
+('5556789012', 'admin123', 'Admin', 'Sistema', 'Oficina Central', 'admin@example.com', 'Ciudad de México', 'CDMX', 0, 1);
