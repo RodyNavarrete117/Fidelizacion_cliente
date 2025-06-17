@@ -1,5 +1,5 @@
-CREATE DATABASE loyalty_program;
-USE loyalty_program;
+CREATE DATABASE MiTiendaOnline;
+USE MiTiendaOnline;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
