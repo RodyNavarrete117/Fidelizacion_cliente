@@ -1,16 +1,4 @@
 <?php
-session_start();
-
-// Configuración de la conexión a la base de datos
-$host = 'localhost';
-$db = 'loyalty_program';
-$user = 'root';
-$pass = '';
-$conn = new mysqli($host, $user, $pass, $db);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
 
 // Función para sanitizar entradas
 function sanitize($data) {
